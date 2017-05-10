@@ -1,24 +1,24 @@
 ---
 layout: workshop      # DON'T CHANGE THIS.
 root: .               # DON'T CHANGE THIS.
-venue: "FIXME"        # brief name of host site without address (e.g., "Euphoric State University")
-address: "FIXME"      # street address of workshop (e.g., "123 Forth Street, Blimingen, Euphoria")
-country: "FIXME"      # country (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_3166-1)
-language: "FIXME"     # language (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_639-1)
-latlng: "FIXME"       # fractional latitude and longitude (e.g., "41.7901128,-87.6007318"; you can use http://www.latlong.net/)
-humandate: "FIXME"    # human-readable date (e.g., "Feb 17-18, 2020")
-humantime: "FIXME"    # human-readable time (e.g., "9:00 am - 4:30 pm")
-startdate: FIXME      # use YYYY-MM-DD format like 2015-01-01
-enddate: FIXME        # use YYYY-MM-DD format like 2015-01-02
-instructor: ["FIXME"] # list of names like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
-helper: ["FIXME"]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
-contact: "FIXME"      # contact email address for workshop organizer, such as "grace@hopper.org"
+venue: "Cornell University"        # brief name of host site without address (e.g., "Euphoric State University")
+address: "Albert R. Mann Library Room B30A, 237 Mann Drive, Cornell University"      # street address of workshop (e.g., "123 Forth Street, Blimingen, Euphoria")
+country: "US"      # country (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_3166-1)
+language: "en"     # language (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_639-1)
+latlng: "42.448743, -76.476570"       # fractional latitude and longitude (e.g., "41.7901128,-87.6007318"; you can use http://www.latlong.net/)
+humandate: "June 14-15, 2017"    # human-readable date (e.g., "Feb 17-18, 2020")
+humantime: "9:00 am - 5:00 pm"    # human-readable time (e.g., "9:00 am - 4:30 pm")
+startdate: 2017-06-14      # use YYYY-MM-DD format like 2015-01-01
+enddate: 2017-06-15        # use YYYY-MM-DD format like 2015-01-02
+instructor: ["Erika Mudrak", "Lynn Johnson"] # list of names like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
+helper: ["Emily Davenport", "David Kent", "Stephen Parry", "Francoise Vermeylen", "Michael Ko"]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
+contact: "cscu@cornell.edu"      # contact email address for workshop organizer, such as "grace@hopper.org"
 etherpad:         # optional (insert the URL for your Etherpad if you're using one)
 eventbrite:       # optional (insert the alphanumeric key for Eventbrite registration, e.g., "1234567890AB")
 day1_am: "Data organization in spreadsheets and OpenRefine"
-day1_pm: "Introduction to R"
-day2_am: "Data analysis and visualization in R"
-day2_pm: "SQL for data management"
+day1_pm: "Data analysis and visualization in R"
+day2_am: "R for Reproducible Scientific Analysis"
+day2_pm: "Introduction to Python"
 ---
 <!--
   HEADER
@@ -55,10 +55,21 @@ day2_pm: "SQL for data management"
   the pitch.
 -->
 <p>
-<a href=http://datacarpentry.org>Data Carpentry</a> workshops are for any researcher 
-who has data they want to analyze, and no prior computational experience is required. 
+Our workshop uses <a href=http://datacarpentry.org>Data Carpentry</a> lessons 
+and is aimed at academic researchers in all fields and at all career stages. 
 This hands-on workshop teaches basic concepts, skills and tools for working more 
 effectively with data. 
+
+<BR>
+To allow for coverage of more advanced R topics, we require that participants be 
+familiar with R and RStudio. Participants should be familiar with creating new projects, 
+loading data, modifying data types, exploring data, subsetting data, and simple plotting functions.
+
+If you have never used R or want a refresher, you can prepare for the Data Carpentry Workshop by attending CSCU's free workshops:
+
+    Learn the prerequisite R skills in <a href="https://cscu.cornell.edu/workshops/intro_r.php"> Introductory Statistic Using R </a> on June 12th.
+    Practice them in <a href="https://cscu.cornell.edu/workshops/intermediate_r.php"> Intermediate Statistics Using R </a> on the 13th.
+
 </p>
 <p>
 We will cover {{page.day1_am}}, {{page.day1_pm}}, {{page.day2_am}} and {{page.day2_pm}}.
@@ -74,7 +85,8 @@ Participants should bring their laptops and plan to participate actively. By the
 -->
 <p>
   <strong>Who:</strong>
-  The course is aimed at graduate students and other researchers.
+  The course is aimed at graduate students and other researchers. Priority will be given to people from Cornell Departments that support CSCU. 
+  See <a href: "https://cscu.cornell.edu/about/fees.php"> this page </a> for a list of such departments. 
 </p>
 
 <!--
@@ -109,6 +121,40 @@ Participants should bring their laptops and plan to participate actively. By the
   Data Carpentry's
   <a href="{{site.dc_site}}/code-of-conduct/">Code of Conduct</a>.
 </p>
+
+<p>  
+  <B> Prerequisites: </B> We especially encourage registration for those who may be less familiar with the above topics. To allow for coverage of more advanced R topics, we require that participants be familiar enough with R and RStudio to: 
+
+
+
+<ul>
+	<li>Be familiar with the R Studio interface (console, scripts, tabs for workspace, history, files, plots, packages, help)</li>	
+	<li>Make a project in a new directory</li>
+	<li>load a <code>data.frame</code> via <code>read.csv()</code> or <code>read.table()</code></li>
+	<li>how to access columns of a data.frame with <code>$</code></li>
+	<li>know about assignment operators (<code><-</code> or <code>=</code>) and comments <code>#</code> </li>
+	<li>explore a <code>data.frame</code> via <code>head() str() summary() nrow() ncol() names() rownames() table() levels() mean() length() max() min()</code> </li>
+	<li>modify data types with <code>as.factor() relevel() as.numeric()</code></li>
+	<li>create vectors with <code>c()</code> or <code>seq()</code> and index them with <code>[,]</code> bracket notation</li>
+	<li>subset data with <code>[,]</code> bracket notion and logical vectors (<code>==, !=, <, >, %in%</code>) for conditions</li>
+	<li> simple plotting with <code>plot() barplot() hist()</code> </li>	
+	<li>understand the concept of functions and their arguments</li>
+	<li>get help via <code>?</code> or searching the help tab</li>
+</ul>
+
+</p>
+<p>
+If you have never used R or want a refresher,  please prepare for the Data Carpentry Workshop by attending CSCU's free workshops:
+<br> Learn the above in  <a href=https://cscu.cornell.edu/workshops/intro_r.php> Introductory Statistic Using R </a> on June 9 
+<br> Practice the above in  <a href=https://cscu.cornell.edu/workshops/intermediate_r.php> Intermediate Statistics Using R </a>  on June 10th. 
+</p>
+
+</p>
+
+<p>
+  <strong>Registration:</strong> We charge a $40 fee to help defray costs.
+ </p>
+ 
 
 <!--
   CONTACT EMAIL ADDRESS
