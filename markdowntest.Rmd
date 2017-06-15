@@ -1,0 +1,95 @@
+---
+title: "Data Carpentry Example"
+author: "Erika"
+date: "June 15, 2017"
+output:
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+
+```
+
+
+
+```{r}
+svy <- read.csv("svy_complete.csv", header=TRUE)
+str(svy)
+```
+
+
+## Introduction
+
+Mammals are very important....
+
+
+
+
+
+
+```{r,  echo=FALSE}
+library(ggplot2)
+
+SHplot <- ggplot(subset(svy, species_id=="SH"), aes(x=weight, y=hindfoot_length))+geom_point()
+plot(SHplot)
+
+#comment 
+
+
+```
+
+You can calculate lines of code within the markdown section of this document
+
+The mean animal weight is `r round(mean(svy$weight), 2)`, which very small... 
+```{r  , echo=FALSE, results='hide' }
+SHmodel<-lm(hindfoot_length~weight, data=subset(svy, species_id=="SH"))
+SHresults<-summary(SHmodel)
+SHresults
+
+SHslope<-SHresults$coefficients[2,1]
+SHpvalue <- SHresults$coefficients[2,4]
+
+```
+
+
+
+For species SH, a one gram change in weight results in a `r SHslope` cm change in hindfoot length (p = `r SHpvalue`). 
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+1. number one
+1. number one and a half
+1. number two
+1. number three
+
+- thing a
+- thing b
+- thing z
+
+# Title
+## Main Section
+### Subsection
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
