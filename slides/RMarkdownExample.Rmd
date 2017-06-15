@@ -1,0 +1,82 @@
+---
+title: "Data Carpentry Example"
+author: "Erika Mudrak"
+date: "June 13, 2017"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(knitr)
+```
+
+### Introduction
+
+Markdown is a way to imbed figures and statistical outputs right into your paper or notebook, along with your written explanation of what is going on (or the entire body of your paper!). 
+
+
+
+```{r read in data, echo=FALSE, comment=NA,warning=FALSE}
+
+svy <- read.csv("svy_complete.csv", header=TRUE)
+str(svy)
+```
+```{r}
+library(ggplot2)  #You could have put this in the first chunk when you loaded the other libraries. 
+SHplot<-ggplot(subset(svy, species_id=="SH"), aes(x=weight, y=hindfoot_length))+geom_point()
+plot(SHplot)
+
+
+
+```
+```{r}
+DSplot<-ggplot(subset(svy, species_id=="DS"), aes(x=weight, y=hindfoot_length))+geom_point()
+plot(DSplot)
+```
+
+You can make inline code in the text part of your report.  
+`this makes it look like a piece of code`
+
+You can also calculate within the inline code by using ``r` and ` ` `
+
+For example, the mean animal weight is `r mean(svy$weight)`, which is pretty large...  
+
+But that is too specific.  It's better to round 
+The mean animal weight is `r round(mean(svy$weight), 1)`, which is pretty large...  
+
+###  Challenge:  Add in line text with results from the regression. 
+
+
+```{r, echo=FALSE, results="hide"}
+  SHmodel <- lm(hindfoot_length~ weight, data=subset(svy, species_id=="SH"))
+  SHresults<-summary(SHmodel)
+  SHslope <- SHresults$coefficients[2,1]
+  SHpval <- SHresults$coefficients[2,4]
+
+```
+For species SH, a one gram change in weight results in a `r SHslope` cm change in hindfoot length (p=`r SHpval` and weight explains a good amount of variation (R = `r round(SHresults$r.squared, 2)`),  well... good for Ecology...
+
+```{r, echo=FALSE}
+  DSmodel <- lm(hindfoot_length~ weight, data=subset(svy, species_id=="DS"))
+  DSresults<-summary(DSmodel)  
+```
+
+For species DS, weight had a significant effect on hindfoot length (F~`r DSresults$fstatistic["numdf"]`,`r DSresults$fstatistic["dendf"]`~ =`r round(DSresults$fstatistic["value"], 2)`, p=`r round(pf(q=DSresults$fstatistic["value"], df1=DSresults$fstatistic["numdf"], df2=DSresults$fstatistic["dendf"], lower.tail=FALSE), 2)`), and this model explains a good amount of variation (R = `r round(DSresults$r.squared, 2)`).
+
+
+## Add in table example from kable
+```{r, echo=FALSE}
+avgwt <- svy %>% 
+    group_by(species_id) %>%
+    filter(!is.na(sex), !is.na(weight)) %>%
+    summarise(meanwt  = mean(weight))
+```
+
+```{r}
+kable(avgwt)
+```
+
